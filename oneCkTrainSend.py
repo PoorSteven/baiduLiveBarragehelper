@@ -140,26 +140,31 @@ class BaiduComments():
         try:
             headers = {
                 'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate',
+                'Accept-Encoding': 'gzip, deflate, br',
                 'Accept-Language': 'zh-CN,zh;q=0.9',
                 'Connection': 'keep-alive',
                 'Host': 'mbd.baidu.com',
-                'Referer': 'http://live.baidu.com/',
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4462.0 Safari/537.36',
-                'Cookie': 'BAIDUID=CCBD6886BFA1A34A92EC5BFF49CC3E51:FG=1; BIDUPSID=CCBD6886BFA1A34A92EC5BFF49CC3E51; PSTM=1605065139; MBD_AT=0; userDeviceId=fhc6ij1605452779; BAIDUID_BFESS=CCBD6886BFA1A34A92EC5BFF49CC3E51:FG=1; x-logic-no=2'
+                'Referer': 'https://live.baidu.com/',
+                'sec-ch-ua-mobile': '?0',
+                # 'sec-ch-ua-platform': '"Windows"',
+                'sec-ch-ua': '"Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"',
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/604.3.5 (KHTML, like Gecko) Version/13.0 MQQBrowser/10.1.1 Mobile/15B87 Safari/604.1 QBWebViewUA/2 QBWebViewType/1 WKType/1',
+                'Cookie': Cookie
             }
             # print(room_id)
             information_url = 'http://mbd.baidu.com/searchbox?'
 
             params = {
-                'cmd': '371',
+                'cmd': '366',
                 'action': 'star',
                 'service': 'bdbox',
-                'osname': 'h5pre',
-                'data': '{"data":{"room_id":"' + self.roomID + '","device_id":"pc-' + self.ran_tag_str(
-                    32) + '","source_type":0}}',
-                '_': str(int(self.get_time() * 1000)),
-                # 'callback': '__jsonp_callback_0__'
+                'osname': 'ios',
+                # 'data': '{"data": {"roomid": "'+self.roomID+'", "device_id": "'+self.ran_tag_str(32)+'", "source_type": 1,"text": "'+comment+'"}}',
+                'data': '{"data":{"roomid":"' + self.roomID + '","device_id":"' + self.ran_tag_str(
+                    32) + '","source_type":1,"biz":{"roomid":"' + self.roomID + '"},"text":"' + comment + '","jt":"' + self.ran_tag_str(
+                    471) + '|10|' + self.ran_tag_str(32) + '"}}',
+                '_': str(int(self.get_time() * 1000))
+                # callback: __jsonp_callback_1__
             }
 
             information = requests.get(url=information_url, headers=headers, params=params)

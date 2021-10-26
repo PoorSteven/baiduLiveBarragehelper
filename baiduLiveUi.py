@@ -669,7 +669,7 @@ class Ui_MainWindow(object):
         self.roomUrl.setPlaceholderText(_translate("MainWindow", "请输入直播间真实链接"))
         self.liveUrlbutton.setText(_translate("MainWindow", "连接直播间"))
         self.label_11.setText(_translate("MainWindow", "软件版本："))
-        self.softVserion.setText(_translate("MainWindow", "4.7"))
+        self.softVserion.setText(_translate("MainWindow", "4.8"))
         self.label_17.setText(_translate("MainWindow", "激活码到期："))
         self.failtime.setText(_translate("MainWindow", "9999-99-99"))
         self.groupBox.setTitle(_translate("MainWindow", "CK账号配置"))
