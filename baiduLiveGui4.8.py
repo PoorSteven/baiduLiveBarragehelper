@@ -131,7 +131,8 @@ class BaiduLive(QMainWindow):
     def initUI(self):
         self.ui = baiduLiveUi.Ui_MainWindow()
         self.ui.setupUi(self)
-        now_dir = os.path.abspath(os.path.dirname(__file__))
+        now_dir = os.path.split(os.path.realpath(sys.argv[0]))[0]
+        # now_dir = os.path.abspath(os.path.dirname(__file__))
         self.setWindowTitle('百度直播弹幕助手 ---- 当前运行目录：'+ now_dir)
 
 
