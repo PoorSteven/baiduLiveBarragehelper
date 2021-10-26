@@ -124,18 +124,19 @@ class onlinePopul():
             'Connection': 'keep-alive',
             'Host': 'mbd.baidu.com',
             'Referer': 'https://live.baidu.com/',
-            'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
+            'sec-ch-ua': '"Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"',
             'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': 'Windows',
             'Sec-Fetch-Dest': 'script',
             'Sec-Fetch-Mode': 'no-cors',
             'Sec-Fetch-Site': 'same-site',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.10 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36',
             'Cookie': cookie
         }
         # print(room_id)
-        #information_url = 'http://mbd.baidu.com/searchbox?cmd=371&action=star&service=bdbox&osname=pc&data=%7B%22data%22%3A%7B%22room_id%22%3A%22'+roomID+'%22%2C%22replay_slice%22%3A0%2C%22nid%22%3A%22%22%2C%22device_id%22%3A%22pc-'+self.ran_tag_str(32)+'%22%2C%22source_type%22%3A0%7D%7D&_='+str(int(self.get_time() * 1000))
-
         information_url = 'https://mbd.baidu.com/searchbox?cmd=371&action=star&service=bdbox&osname=pc&data=%7B%22data%22%3A%7B%22room_id%22%3A%22'+roomID+'%22%2C%22replay_slice%22%3A0%2C%22nid%22%3A%22%22%2C%22device_id%22%3A%22pc-'+self.ran_tag_str(32)+'%22%2C%22source_type%22%3A0%7D%7D&_='+str(int(self.get_time() * 1000))
+
+        #information_url = 'https://mbd.baidu.com/searchbox?cmd=371&action=star&service=bdbox&osname=pc&data=%7B%22data%22%3A%7B%22room_id%22%3A%22'+roomID+'%22%2C%22replay_slice%22%3A0%2C%22nid%22%3A%22%22%2C%22device_id%22%3A%22pc-'+self.ran_tag_str(32)+'%22%2C%22source_type%22%3A0%7D%7D&_='+str(int(self.get_time() * 1000))
 
 
 

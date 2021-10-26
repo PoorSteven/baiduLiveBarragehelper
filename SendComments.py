@@ -96,7 +96,9 @@ class BaiduComments():
                 'Connection': 'keep-alive',
                 'Host': 'mbd.baidu.com',
                 'Referer': 'https://live.baidu.com/',
-                'sec-ch-ua-mobile': '?1',
+                'sec-ch-ua-mobile': '?0',
+                # 'sec-ch-ua-platform': '"Windows"',
+                'sec-ch-ua': '"Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"',
                 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/604.3.5 (KHTML, like Gecko) Version/13.0 MQQBrowser/10.1.1 Mobile/15B87 Safari/604.1 QBWebViewUA/2 QBWebViewType/1 WKType/1',
                 'Cookie': Cookie
             }
@@ -107,7 +109,8 @@ class BaiduComments():
                 'action': 'star',
                 'service': 'bdbox',
                 'osname': 'ios',
-                'data': '{"data": {"roomid": "'+self.roomID+'", "device_id": "'+self.ran_tag_str(32)+'", "source_type": 1,"text": "'+comment+'"}}',
+                # 'data': '{"data": {"roomid": "'+self.roomID+'", "device_id": "'+self.ran_tag_str(32)+'", "source_type": 1,"text": "'+comment+'"}}',
+                'data': '{"data":{"roomid":"'+self.roomID+'","device_id":"'+self.ran_tag_str(32)+'","source_type":1,"biz":{"roomid":"'+self.roomID+'"},"text":"'+comment+'","jt":"'+self.ran_tag_str(471)+'|10|'+self.ran_tag_str(32)+'"}}',
                 '_': str(int(self.get_time()*1000))
                 # callback: __jsonp_callback_1__
             }
@@ -236,7 +239,7 @@ if __name__ == '__main__':
     if os.path.isfile('.ini/sendComments.ini') == True:
         with open('.ini/sendComments.ini','r',encoding='utf-8')as f:
             data = f.readlines()
-            print(data)
+            # print(data)
             ckPath = data[0].strip()
             adsPath = data[1].strip()
             roomID = data[2].strip()
