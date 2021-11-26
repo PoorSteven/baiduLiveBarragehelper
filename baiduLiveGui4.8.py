@@ -426,8 +426,8 @@ class BaiduLive(QMainWindow):
     #获取房间ID
     def get_room_id(self):
         url = self.ui.roomUrl.text().strip()
-        url = url.split('&')[0]
-        room_id = re.findall(r'room_id=(.*)', url)[0]
+        # url = url.split('&')[0]
+        room_id = re.findall(r'room_id=([1-9][0-9]{8,})', url)[0]
         print('获取房间ID:'+room_id)
         return room_id
 
@@ -1078,27 +1078,27 @@ class BaiduLive(QMainWindow):
             elif self.time_stamp(self.get_now_time()) > self.time_stamp(result[2]):
                 local_cdkey_msg = 'error'
 
-                self.printf('>>>:激活码使用到期！购买激活码请联系Steven QQ：2621228281')
+                self.printf('>>>:激活码使用到期！')
             else:
                 local_cdkey_msg = 'error'
 
-                self.printf('>>>:激活码错误，请核对后再进行输入！购买激活码请联系Steven QQ：2621228281')
+                self.printf('>>>:激活码错误，请核对后再进行输入！')
 
 
         elif 1 < len(local_cdkey) < 55 or len(local_cdkey) > 55:
             local_cdkey_msg = 'error'
 
-            self.printf('>>>:激活码错误，请核对后再进行输入！如未购买激活码请联系Steven QQ：2621228281')
+            self.printf('>>>:激活码错误，请核对后再进行输入！如未购买激活码')
             # print('本地激活码错误！')
 
         elif len(local_cdkey) == 0:
             local_cdkey_msg = 'error'
 
-            self.printf('>>>:没有输入激活码，请购买请激活码后使用程序！购买联系Steven QQ：2621228281')
+            self.printf('>>>:没有输入激活码，请购买请激活码后使用程序！')
         else:
             local_cdkey_msg = 'error'
 
-            self.printf('>>>:激活码错误，请购买请激活码后使用程序！购买联系Steven QQ：2621228281')
+            self.printf('>>>:激活码错误，请购买请激活码后使用程序！')
 
             # print('本地没有激活码！')
         QApplication.processEvents()
