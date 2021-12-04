@@ -22,6 +22,7 @@ import sys
 import os
 import re
 import random
+import urllib
 import urllib3
 import time
 import datetime
@@ -427,7 +428,25 @@ class BaiduLive(QMainWindow):
     def get_room_id(self):
         url = self.ui.roomUrl.text().strip()
         # url = url.split('&')[0]
-        room_id = re.findall(r'room_id=([1-9][0-9]{8,})', url)[0]
+        headers = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,ja;q=0.7',
+            'Connection': 'keep-alive',
+            'Host': 'mq.mbd.baidu.com',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'
+        }
+
+        if 'room_id' in url:
+            url = urllib.parse.unquote(url)
+            room_id = re.findall(r'room_id=([1-9][0-9]{9,})', url)[0]
+            # print(room_id)
+        else:
+            response = requests.get(url, headers=headers, allow_redirects=False)
+            location = urllib.parse.unquote(response.headers['Location'])
+            # print(location)
+            room_id = re.findall(r'room_id=([1-9][0-9]{9,})', location)[0]
+            # print(room_id)
+        # room_id = re.findall(r'room_id=([1-9][0-9]{8,})', url)[0]
         print('获取房间ID:'+room_id)
         return room_id
 
@@ -731,8 +750,9 @@ class BaiduLive(QMainWindow):
     #点击链接直播间后，展示图片 房间ID 主播昵称
     def link_live_click(self):
         try:
-            if 'room_id' in self.ui.roomUrl.text():
-                roomID = self.get_room_id()
+            roomID = self.get_room_id()
+
+            if roomID != '':
                 # print(room_id)
                 roomData = self.link_live_info(roomID)
                 # print(room_data)
