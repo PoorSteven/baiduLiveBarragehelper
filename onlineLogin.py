@@ -51,10 +51,10 @@ class onlinePopul():
     # 获取房间ID
     def get_room_id(self):
         if os.path.isfile('setting.ini') == True:
-            url = open('setting.ini', 'r', encoding='utf-8').readlines()[0]
-            url = url.split('&')[0]
-            room_id = re.findall(r'room_id=(.*)', url)[0]
-            # print('获取房间ID:'+room_id)
+            room_id = open('.ini/onlineTime.ini', 'r', encoding='utf-8').readlines()[1].strip()
+            # url = url.split('&')[0]
+            # room_id = re.findall(r'room_id=(.*)', url)[0]
+            print('获取房间ID:'+room_id)
             return room_id
         else:
             messagebox.showinfo("提示", "请先保存配置文件，然后在使用！")
@@ -63,8 +63,8 @@ class onlinePopul():
     #登陆时间间隔
     def onlineTime(self):
         with open('.ini/onlinetime.ini','r',encoding='utf-8')as f:
-            onlineTime = f.readline().strip()
-
+            onlineTime = f.readlines()[0].strip()
+            print(onlineTime)
         return onlineTime
 
     # 人气协议新线程函数入口
